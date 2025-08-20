@@ -1,5 +1,5 @@
-// TOOLKING – Custom JS (Popups, Besucherzähler, Scanner, 30-Tage-Preis-Entfernung)
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
   const isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth < 1024;
 
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   /* =========================================================
-     MOBIL: EAN-Scanner (QuaggaJS benötigt)
+     MOBIL: EAN-Scanner (QuaggaJS)
   ========================================================= */
   if (isMobile) {
     try {
@@ -144,8 +144,12 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
+  // sofort
   removeLowestPrice();
+  // nach jedem Ecwid-Reload
   document.addEventListener("ecwid:onPageLoaded", removeLowestPrice);
+  // Fallback alle 2 Sek.
   setInterval(removeLowestPrice, 2000);
 
 });
+</script>
